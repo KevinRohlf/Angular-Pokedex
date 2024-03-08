@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoadedPokemonService } from './loaded-pokemon.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Pokedex';
+  currentIndex:any;
+  constructor(public loadedPokemon:LoadedPokemonService){
+    this.currentIndex = loadedPokemon.pokemonList;
+  }
+  
+
+  
 }
