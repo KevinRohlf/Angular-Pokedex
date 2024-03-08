@@ -1,0 +1,36 @@
+<div class="selection-background">
+    <img class="mobile-btn" onclick="closeSelection()" src="./img/exitbtn.svg">
+    <div class="selection-top position-relative" [ngClass]="pokemon.types ? [pokemon.types[0]] : 'black'">
+        
+        <div class="selection-Img">
+            <img class="selection-pokeball" src="./assets/img/pokeball.svg">
+            <img class="pokemon" [src]="pokemon.img" alt="pokemon image" onerror="this.src='/assets/img/pokeball.svg'">
+        </div>
+        <div class="selection-title" [ngClass]="pokemon.types ? [pokemon.types[0]] + 'type' : 'black'">
+            <img *ngIf="pokemonIndex > 0" id="back" class="back-button" (click)="loadNextPokemon('last')" src="/assets/img/back.svg">
+            <h2 class="margin-unset">{{pokemon.name}}</h2>
+            <img *ngIf="pokemonIndex < pokemonService.pokemonList.length -1"id="next" class="next-button" (click)="loadNextPokemon('next')" src="/assets/img/next.svg">
+            <span>#{{pokemon.dexNumber}}</span> 
+        </div>
+
+    </div>
+    <div class="selection-bottom">
+        <div class="d-flex nav">
+            <div id="generalBtn" onclick="renderGeneral()" class="nav-btn">
+                General                   
+            </div>
+            <div id="notGeneralBtn" onclick="renderNotGeneral()" class="nav-btn inactive-btn">
+                Types                   
+            </div>
+        </div>
+        <div id="general">
+        </div>
+        <div id="stats">
+            <div class="d-flex justify-content-center stats-title">
+                Species specific strengths
+            </div>
+            <div id="statsImport">
+            </div>
+        </div>
+    </div>
+</div>

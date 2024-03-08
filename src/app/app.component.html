@@ -1,3 +1,7 @@
-<div class="content" >
-  <app-pokemon *ngFor="let item of loadedPokemon.pokemonList; let i = index;" [index]="loadedPokemon.pokemonList[i]" (click)="selectPokemon(loadedPokemon.pokemonList[i])"></app-pokemon>
+<div class="content" #pokemon>
+  <app-pokemon *ngFor="let item of loadedPokemon.pokemonList; let i = index;" [index]="loadedPokemon.pokemonList[i]"
+    (click)="selectPokemon(loadedPokemon.pokemonList[i])"></app-pokemon>
+</div>
+<div *ngIf="selectedPokemon" class="overlay" (click)="selectedPokemon = ''">
+  <app-selected-pokemon [selectedPokemon]="selectedPokemon" (click)="doNotClose($event)"></app-selected-pokemon>
 </div>

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { LoadedPokemonService } from '../../loaded-pokemon.service';
+import { LoadedPokemonService } from '../../services/loaded-pokemon.service';
 import { Pokemon } from '../../../models/pokemon.class';
 
 @Component({
@@ -9,9 +9,7 @@ import { Pokemon } from '../../../models/pokemon.class';
 })
 export class PokemonComponent implements OnInit{
   @Input() index;
-  pokemon:any = [];
-  currentIndex:number = 2;
-  imgsrc:string;
+  pokemon:any = [{types: false}];
 
   ngOnInit(): void {
   }
@@ -20,16 +18,12 @@ export class PokemonComponent implements OnInit{
     
   }
 
-  async loadPokemon() {
-    let url = `https://pokeapi.co/api/v2/pokemon/${this.index}` 
-    let response = await fetch(url);
-    this.pokemon = await response.json();
-    this.pokemon = new Pokemon(this.pokemon)
-    this.imgsrc = this.pokemon.img
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
+/**
+ *  Load the pokemon class
+ * @param changes  The changes to the input
+ */
+  async ngOnChanges(changes: SimpleChanges) {
     this.index = changes['index'].currentValue;
-    this.loadPokemon()
+    this.pokemon = new Pokemon(await this.loadedPokemon.loadPokemon(this.index));
   }
 }
