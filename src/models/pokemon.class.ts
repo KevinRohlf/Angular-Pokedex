@@ -1,15 +1,15 @@
 export class Pokemon {
     name:string
     img:string
-    pokemonType = []
+    types = []
     dexNumber:number
 
     constructor(obj?:any) {
         this.name = obj.name ? obj.name : "Unbekannt";
-        this.img = obj.sprites.other["official-artwork"].front_default ? obj.sprites.other["official-artwork"].front_default : "";
-        this.dexNumber = obj.id ? obj : 0;
+        this.img = obj['sprites']['other']['official-artwork']['front_default'] ? obj['sprites']['other']['official-artwork']['front_default'] : "";
+        this.dexNumber = obj.id ? obj.id : 0;
         obj.types.forEach((pokemon: any) => {
-            this.pokemonType.push(pokemon.name);
+            this.types.push(pokemon.type.name);
         });
     }
 }

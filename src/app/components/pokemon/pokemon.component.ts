@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { LoadedPokemonService } from '../loaded-pokemon.service';
+import { LoadedPokemonService } from '../../loaded-pokemon.service';
+import { Pokemon } from '../../../models/pokemon.class';
 
 @Component({
   selector: 'app-pokemon',
@@ -23,7 +24,8 @@ export class PokemonComponent implements OnInit{
     let url = `https://pokeapi.co/api/v2/pokemon/${this.index}` 
     let response = await fetch(url);
     this.pokemon = await response.json();
-    this.imgsrc = this.pokemon['sprites']['other']['official-artwork']['front_default']
+    this.pokemon = new Pokemon(this.pokemon)
+    this.imgsrc = this.pokemon.img
   }
 
   ngOnChanges(changes: SimpleChanges) {

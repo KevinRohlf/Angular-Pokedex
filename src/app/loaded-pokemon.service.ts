@@ -7,7 +7,7 @@ export class LoadedPokemonService {
   pokemonList = []
 
   constructor() {
-    this.loadPokemonsInList()
+    this.loadPokemonsInList();
   }
 
   async loadPokemonsInList() {
@@ -16,7 +16,6 @@ export class LoadedPokemonService {
     let list = await response.json();
     list.results.forEach((pokemon) => {
       this.pokemonList.push(pokemon.name);
-    })
-    console.log(this.pokemonList)
+    });
   }
 }

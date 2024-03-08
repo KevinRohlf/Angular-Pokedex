@@ -13,6 +13,9 @@ export class AppComponent {
     this.currentIndex = loadedPokemon.pokemonList;
   }
   
+  selectPokemon(index){
+    console.log(index);
+  }
 
   
 }
