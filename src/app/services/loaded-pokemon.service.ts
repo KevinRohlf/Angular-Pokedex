@@ -10,6 +10,7 @@ export class LoadedPokemonService {
   offset = 0;
   limit = 20;
   loading = false;
+  openOverlay = false;
 
   constructor() {
     this.loadPokemonsInList();
@@ -26,14 +27,12 @@ export class LoadedPokemonService {
     list.results.forEach((pokemon) => {
       if (!this.pokemonList.includes(pokemon.name)) {
         this.pokemonList.push(pokemon.name);
-      } else {
-        console.log("Pokemon already loaded");
       }
     });
     this.offset = this.limit;
     this.limit += 20;
     this.loading = false;
-    console.log('offset ' + this.offset, 'limit ' + this.limit);
+    
   }
 
   /**
@@ -45,7 +44,6 @@ export class LoadedPokemonService {
     let url = `https://pokeapi.co/api/v2/pokemon/${name}` 
     let response = await fetch(url);
     let pokemon = await response.json();
-    // pokemon = new Pokemon(pokemon);
     return pokemon;
   }
 }

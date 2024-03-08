@@ -12,4 +12,11 @@ export class Pokemon {
             this.types.push(pokemon.type.name);
         });
     }
+
+    /**
+     * make the dexnumber length to 3
+     */
+    get dexNumberString() {
+        return this.dexNumber.toString().padStart(3, '0');
+    }
 }

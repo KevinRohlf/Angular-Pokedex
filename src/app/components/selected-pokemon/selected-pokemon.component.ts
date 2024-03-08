@@ -19,7 +19,6 @@ export class SelectedPokemonComponent implements OnInit{
     
   }
   async ngOnChanges() {
-    console.log(this.selectedPokemon)
     this.pokemon = new Pokemon(await this.pokemonService.loadPokemon(this.selectedPokemon));
     this.pokemonIndex = this.pokemonService.pokemonList.indexOf(this.pokemon.name);
   }

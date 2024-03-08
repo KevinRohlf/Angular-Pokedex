@@ -29,8 +29,6 @@ export class AppComponent implements AfterViewInit {
   onScroll(): void {
     let height = this.body.nativeElement.offsetHeight;
     if ((window.innerHeight + window.scrollY) >= height && !this.loadedPokemon.loading) {
-      // you're at the bottom of the page
-      console.log(document.body.offsetHeight);
       this.loadedPokemon.loadPokemonsInList();
     }
   }
@@ -38,7 +36,7 @@ export class AppComponent implements AfterViewInit {
  *  Stop the event from propagating
  * @param event The event to stop from propagating
  */
-  doNotClose(event) {
+  doNotClose(event:any) {
     event.stopPropagation();
   }
 

@@ -1,5 +1,5 @@
 <div class="selection-background">
-    <img class="mobile-btn" onclick="closeSelection()" src="./img/exitbtn.svg">
+    <img class="mobile-btn" (click)="pokemonService.openOverlay = false" src="./assets/img/exitbtn.svg">
     <div class="selection-top position-relative" [ngClass]="pokemon.types ? [pokemon.types[0]] : 'black'">
         
         <div class="selection-Img">
@@ -10,7 +10,7 @@
             <img *ngIf="pokemonIndex > 0" id="back" class="back-button" (click)="loadNextPokemon('last')" src="/assets/img/back.svg">
             <h2 class="margin-unset">{{pokemon.name}}</h2>
             <img *ngIf="pokemonIndex < pokemonService.pokemonList.length -1"id="next" class="next-button" (click)="loadNextPokemon('next')" src="/assets/img/next.svg">
-            <span>#{{pokemon.dexNumber}}</span> 
+            <span>#{{pokemon.dexNumberString}}</span> 
         </div>
 
     </div>
