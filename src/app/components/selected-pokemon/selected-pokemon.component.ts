@@ -11,6 +11,7 @@ export class SelectedPokemonComponent implements OnInit{
   @Input() selectedPokemon:any;
   pokemon:any = [{types: false}];
   pokemonIndex: any;
+  general = true;
 
   ngOnInit(): void {
   }
@@ -21,6 +22,7 @@ export class SelectedPokemonComponent implements OnInit{
   async ngOnChanges() {
     this.pokemon = new Pokemon(await this.pokemonService.loadPokemon(this.selectedPokemon));
     this.pokemonIndex = this.pokemonService.pokemonList.indexOf(this.pokemon.name);
+    console.log(this.pokemon.abilities)
   }
 
   /**

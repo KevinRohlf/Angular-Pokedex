@@ -1,5 +1,12 @@
 .content {
     display: flex;
+    justify-content: center;
+}
+
+.pokedex {
+    display: flex;
+    justify-content: center;
+    max-width: 1600px;
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;

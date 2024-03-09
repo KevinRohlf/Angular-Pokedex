@@ -4,11 +4,11 @@
         
         <div class="selection-Img">
             <img class="selection-pokeball" src="./assets/img/pokeball.svg">
-            <img class="pokemon" [src]="pokemon.img" alt="pokemon image" onerror="this.src='/assets/img/pokeball.svg'">
+            <img class="pokemon" [src]="pokemon.img" alt="pokemon image" onerror="this.src='/assets/img/loading.svg'">
         </div>
         <div class="selection-title" [ngClass]="pokemon.types ? [pokemon.types[0]] + 'type' : 'black'">
             <img *ngIf="pokemonIndex > 0" id="back" class="back-button" (click)="loadNextPokemon('last')" src="/assets/img/back.svg">
-            <h2 class="margin-unset">{{pokemon.name}}</h2>
+            <h2 class="margin-unset">{{pokemonService.titleCaseWord(pokemon.name)}}</h2>
             <img *ngIf="pokemonIndex < pokemonService.pokemonList.length -1"id="next" class="next-button" (click)="loadNextPokemon('next')" src="/assets/img/next.svg">
             <span>#{{pokemon.dexNumberString}}</span> 
         </div>
@@ -16,14 +16,30 @@
     </div>
     <div class="selection-bottom">
         <div class="d-flex nav">
-            <div id="generalBtn" onclick="renderGeneral()" class="nav-btn">
+            <div id="generalBtn" (click)="general = true" class="nav-btn" [ngClass]="general ? '' : 'inactive-btn'">
                 General                   
             </div>
-            <div id="notGeneralBtn" onclick="renderNotGeneral()" class="nav-btn inactive-btn">
+            <div id="notGeneralBtn" (click)="general = false" class="nav-btn" [ngClass]="general ? 'inactive-btn' : ''">
                 Types                   
             </div>
         </div>
         <div id="general">
+            <div class="general-stats">
+                <div class="general-stat">
+                    <span>height</span><br>
+                    <div><b>{{ pokemon.height }} m</b></div>
+                </div>
+                <div class="general-stat">
+                    <span>weight</span><br>
+                    <div><b>{{ pokemon.weight }} kg</b></div>
+                </div>
+            </div>
+            <div class="general-stats">
+                <div class="general-stat">
+                    <span>abilities</span> <br>
+                    <div><b id="abilities"><div *ngFor="let abilitie of pokemon.abilities">{{ abilitie }}</div></b></div>
+                </div>
+            </div>    
         </div>
         <div id="stats">
             <div class="d-flex justify-content-center stats-title">

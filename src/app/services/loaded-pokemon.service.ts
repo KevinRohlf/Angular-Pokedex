@@ -8,7 +8,7 @@ import e from 'express';
 export class LoadedPokemonService {
   pokemonList = []
   offset = 0;
-  limit = 20;
+  limit = 45;
   loading = false;
   openOverlay = false;
 
@@ -45,5 +45,10 @@ export class LoadedPokemonService {
     let response = await fetch(url);
     let pokemon = await response.json();
     return pokemon;
+  }
+
+  titleCaseWord(word: string) {
+    if (!word) return word;
+    return word[0].toUpperCase() + word.substr(1).toLowerCase();
   }
 }
