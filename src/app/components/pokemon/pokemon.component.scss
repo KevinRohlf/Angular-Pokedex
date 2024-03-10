@@ -36,6 +36,9 @@
         z-index: 2;
         font-weight: bolder;
         margin: unset;
+        color: white;
+        -webkit-text-stroke: 1px black;
+        text-shadow: 1px 3px 0 #000000, 1px 3px 5px #000000;
     }
 
     span {
@@ -74,9 +77,7 @@
     z-index: 0;
 }
 
-.pokemon {
-    position: absolute;
-}
+
 
 .great-first-letter {
     text-transform: capitalize

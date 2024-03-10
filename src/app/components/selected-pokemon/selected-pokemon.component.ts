@@ -21,7 +21,7 @@ export class SelectedPokemonComponent implements OnInit{
   }
   async ngOnChanges() {
     this.pokemon = new Pokemon(await this.pokemonService.loadPokemon(this.selectedPokemon));
-    this.pokemonIndex = this.pokemonService.pokemonList.indexOf(this.pokemon.name);
+    this.pokemonIndex = this.pokemonService.pokemonFullList.indexOf(this.pokemon.name);
     console.log(this.pokemon.abilities)
   }
 
@@ -34,7 +34,7 @@ export class SelectedPokemonComponent implements OnInit{
     } else {
       this.pokemonIndex++;
     }
-    this.selectedPokemon = this.pokemonService.pokemonList[this.pokemonIndex];
+    this.selectedPokemon = this.pokemonService.pokemonFullList[this.pokemonIndex];
     this.pokemon = new Pokemon(await this.pokemonService.loadPokemon(this.selectedPokemon));
   }
 }

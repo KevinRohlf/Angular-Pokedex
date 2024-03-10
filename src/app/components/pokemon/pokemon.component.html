@@ -1,6 +1,6 @@
 <div class="pokemonBox" [ngClass]="pokemon.types ? [pokemon.types[0]] : 'black'">
     <div class="titleBox">
-        <h2 >{{loadedPokemon.titleCaseWord(pokemon.name)}}</h2>
+        <h2 >{{loadedPokemon.titleCaseWord(pokemon.name) ? loadedPokemon.titleCaseWord(pokemon.name) : 'Loading' }}</h2>
         <span>#{{ pokemon.dexNumberString }}</span> 
     </div>
     <div class="pokemonImg">

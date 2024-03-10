@@ -166,3 +166,8 @@ body {
 .black {
     background-color: #00000025;
 }
+
+.pokemon {
+    position: absolute;
+    filter: drop-shadow(10px -5px 4px #0000008c);
+}

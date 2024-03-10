@@ -6,9 +6,10 @@ import e from 'express';
   providedIn: 'root'
 })
 export class LoadedPokemonService {
-  pokemonList = []
+  pokemonList = [];
+  pokemonFullList = [];
   offset = 0;
-  limit = 45;
+  limit = 30;
   loading = false;
   openOverlay = false;
 
@@ -19,21 +20,34 @@ export class LoadedPokemonService {
    * Load more pokemons from the pokeapi
    */
   async loadPokemonsInList() {
-    this.loading = true;
     console.log("Loading more pokemons");
-    let url = `https://pokeapi.co/api/v2/pokemon?limit=${this.limit}&offset=${this.offset}`;
+    let url = `https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`;
     let response = await fetch(url);
     let list = await response.json();
     list.results.forEach((pokemon) => {
-      if (!this.pokemonList.includes(pokemon.name)) {
-        this.pokemonList.push(pokemon.name);
+      if (!this.pokemonFullList.includes(pokemon.name)) {
+        this.pokemonFullList.push(pokemon.name);
       }
     });
-    this.offset = this.limit;
-    this.limit += 20;
-    this.loading = false;
-    
+    this.loadPokemonCards();
   }
+
+  /**
+   * Load 30 pokemon from pokemonFullList in pokemonList
+   */
+  loadPokemonCards() {
+    if (this.loading) return;
+    this.loading = true;
+    for (let i = this.offset; i < this.limit; i++) {
+      if (!this.pokemonList.includes(this.pokemonFullList[i])) {
+        this.pokemonList.push(this.pokemonFullList[i]);
+      }
+    }
+    this.offset = this.limit;
+    this.limit += 30;
+    this.loading = false;
+  }
+
 
   /**
    * Load a pokemon from the pokeapi

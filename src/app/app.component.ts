@@ -29,7 +29,7 @@ export class AppComponent implements AfterViewInit {
   onScroll(): void {
     let height = this.body.nativeElement.offsetHeight;
     if ((window.innerHeight + window.scrollY) >= height && !this.loadedPokemon.loading) {
-      this.loadedPokemon.loadPokemonsInList();
+      this.loadedPokemon.loadPokemonCards();
     }
   }
 /**
