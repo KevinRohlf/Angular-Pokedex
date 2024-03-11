@@ -8,8 +8,8 @@ import { Pokemon } from '../../../models/pokemon.class';
   styleUrl: './pokemon.component.scss'
 })
 export class PokemonComponent implements OnInit{
-  @Input() index;
-  pokemon:any = [{types: false}];
+  @Input() index:any;
+  pokemon:Pokemon;
 
   ngOnInit(): void {
   }

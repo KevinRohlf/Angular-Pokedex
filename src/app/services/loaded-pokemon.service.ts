@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Pokemon } from '../../models/pokemon.class';
-import e from 'express';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +7,10 @@ import e from 'express';
 export class LoadedPokemonService {
   pokemonList = [];
   pokemonFullList = [];
-  offset = 0;
-  limit = 30;
-  loading = false;
-  openOverlay = false;
+  offset:number = 0;
+  limit:number = 30;
+  loading:boolean = false;
+  openOverlay:boolean = false;
 
   constructor() {
     this.loadPokemonsInList();
@@ -20,11 +19,10 @@ export class LoadedPokemonService {
    * Load more pokemons from the pokeapi
    */
   async loadPokemonsInList() {
-    console.log("Loading more pokemons");
     let url = `https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`;
     let response = await fetch(url);
     let list = await response.json();
-    list.results.forEach((pokemon) => {
+    list.results.forEach((pokemon:any) => {
       if (!this.pokemonFullList.includes(pokemon.name)) {
         this.pokemonFullList.push(pokemon.name);
       }

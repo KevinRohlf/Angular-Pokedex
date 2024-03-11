@@ -1,16 +1,16 @@
 <div class="selection-background">
     <img class="mobile-btn" (click)="pokemonService.openOverlay = false" src="./assets/img/exitbtn.svg">
-    <div class="selection-top position-relative" [ngClass]="pokemon.types ? [pokemon.types[0]] : 'black'">
+    <div class="selection-top position-relative" [ngClass]="pokemon ? [pokemon.types[0]] : 'black'">
         
         <div class="selection-Img">
             <img class="selection-pokeball" src="./assets/img/pokeball.svg">
-            <img class="pokemon" [src]="pokemon.img" alt="pokemon image" onerror="this.src='/assets/img/loading.svg'">
+            <img class="pokemon" *ngIf="pokemon" [src]="pokemon.img" alt="pokemon image" onerror="this.src='/assets/img/loading.svg'">
         </div>
-        <div class="selection-title" [ngClass]="pokemon.types ? [pokemon.types[0]] + 'type' : 'black'">
+        <div class="selection-title" [ngClass]="pokemon ? [pokemon.types[0]] + 'type' : 'black'">
             <img *ngIf="pokemonIndex > 0" id="back" class="back-button" (click)="loadNextPokemon('last')" src="/assets/img/back.svg">
-            <h2 class="margin-unset">{{pokemonService.titleCaseWord(pokemon.name) ? pokemonService.titleCaseWord(pokemon.name) : 'Loading...' }}</h2>
+            <h2 class="margin-unset">{{pokemon ? pokemonService.titleCaseWord(pokemon.name) : 'Loading...' }}</h2>
             <img *ngIf="pokemonIndex < pokemonService.pokemonFullList.length -1" id="next" class="next-button" (click)="loadNextPokemon('next')" src="/assets/img/next.svg">
-            <span>#{{pokemon.dexNumberString}}</span> 
+            <span>#{{pokemon ? pokemon.dexNumberString : ''}}</span> 
         </div>
 
     </div>
@@ -27,15 +27,15 @@
             <div class="general-stats">
                 <div class="general-stat">
                     <span>height</span><br>
-                    <div><b>{{ pokemon.height }} m</b></div>
+                    <div><b>{{pokemon ? pokemon.height : ''}} m</b></div>
                 </div>
                 <div class="general-stat">
                     <span>weight</span><br>
-                    <div><b>{{ pokemon.weight }} kg</b></div>
+                    <div><b>{{ pokemon ? pokemon.weight : '' }} kg</b></div>
                 </div>
             </div>
             <div class="general-stats">
-                <div class="general-stat">
+                <div class="general-stat" *ngIf="pokemon">
                     <span>abilities</span> <br>
                     <div><b id="abilities"><div *ngFor="let abilitie of pokemon.abilities">{{ abilitie }}</div></b></div>
                 </div>

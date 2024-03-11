@@ -9,8 +9,8 @@ import { LoadedPokemonService } from '../../services/loaded-pokemon.service';
 })
 export class SelectedPokemonComponent implements OnInit{
   @Input() selectedPokemon:any;
-  pokemon:any = [{types: false}];
-  pokemonIndex: any;
+  pokemon:Pokemon;
+  pokemonIndex: number;
   general = true;
 
   ngOnInit(): void {

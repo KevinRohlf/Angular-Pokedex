@@ -1,13 +1,13 @@
-<div class="pokemonBox" [ngClass]="pokemon.types ? [pokemon.types[0]] : 'black'">
+<div class="pokemonBox" [ngClass]="pokemon ? [pokemon.types[0]] : 'black'">
     <div class="titleBox">
-        <h2 >{{loadedPokemon.titleCaseWord(pokemon.name) ? loadedPokemon.titleCaseWord(pokemon.name) : 'Loading' }}</h2>
-        <span>#{{ pokemon.dexNumberString }}</span> 
+        <h2>{{pokemon ? loadedPokemon.titleCaseWord(pokemon.name) : 'Loading' }}</h2>
+        <span>#{{ pokemon ? pokemon.dexNumberString : '' }}</span>
     </div>
     <div class="pokemonImg">
-        <img *ngIf="pokemon.types" class="pokeball" src="/assets/img/pokeball.svg"> 
-        <img *ngIf="pokemon.img" class="pokemon" [src]="pokemon.img" onerror="this.src='/assets/img/loading.svg'">
+        <img *ngIf="pokemon" class="pokeball" src="/assets/img/pokeball.svg">
+        <img *ngIf="pokemon" class="pokemon" [src]="pokemon.img" onerror="this.src='/assets/img/loading.svg'">
     </div>
-    <div class="d-flex justify-content-center gap-10" >
+    <div class="d-flex justify-content-center gap-10" *ngIf="pokemon">
         <div class="type-buttons" *ngFor="let type of pokemon.types" [ngClass]="[type]+'type'">
             {{ loadedPokemon.titleCaseWord(type) }}
         </div>
