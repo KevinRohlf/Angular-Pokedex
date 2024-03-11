@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { LoadedPokemonService } from '../../services/loaded-pokemon.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +8,26 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  inputField: string;
+
+  constructor(private pokemonService: LoadedPokemonService) {
+
+  }
+
+  search(event: any) {
+    if (this.inputField === "") {
+      this.pokemonService.search = false;
+      this.pokemonService.pokemonSearchList = [];
+
+      return;
+    } else {
+      this.pokemonService.search = true;
+      this.pokemonService.pokemonSearchList = this.pokemonService.pokemonFullList.filter((pokemon) => {
+        return pokemon.includes(this.inputField.toLowerCase());
+      });
+    }
+
+  }
+
 
 }

@@ -7,10 +7,12 @@ import { Injectable } from '@angular/core';
 export class LoadedPokemonService {
   pokemonList = [];
   pokemonFullList = [];
+  pokemonSearchList = [];
   offset:number = 0;
   limit:number = 30;
   loading:boolean = false;
   openOverlay:boolean = false;
+  search:boolean = false;
 
   constructor() {
     this.loadPokemonsInList();
