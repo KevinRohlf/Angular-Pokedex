@@ -1,13 +1,14 @@
-<header>
-  <app-header></app-header>
-</header>
 <div class="content">
+  <header>
+    <app-header></app-header>
+  </header>
   <div class="pokedex" #pokemon [ngClass]="loadedPokemon.search ? 'd-none' : ''">
     <app-pokemon *ngFor="let item of loadedPokemon.pokemonList; let i = index;" [index]="loadedPokemon.pokemonList[i]"
       (click)="selectPokemon(loadedPokemon.pokemonList[i]); loadedPokemon.openOverlay = true"></app-pokemon>
   </div>
   <div class="pokedex" [ngClass]="loadedPokemon.search ? '' : 'd-none'">
-    <app-pokemon *ngFor="let item of loadedPokemon.pokemonSearchList; let i = index;" [index]="loadedPokemon.pokemonSearchList[i]"
+    <app-pokemon *ngFor="let item of loadedPokemon.pokemonSearchList; let i = index;"
+      [index]="loadedPokemon.pokemonSearchList[i]"
       (click)="selectPokemon(loadedPokemon.pokemonSearchList[i]); loadedPokemon.openOverlay = true"></app-pokemon>
   </div>
 </div>
