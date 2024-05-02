@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { url } from 'inspector';
 
 
 @Injectable({
@@ -13,9 +14,11 @@ export class LoadedPokemonService {
   loading:boolean = false;
   openOverlay:boolean = false;
   search:boolean = false;
+  generations = []
 
   constructor() {
     this.loadPokemonsInList();
+    this.loadGenerations();
   }
   /**
    * Load more pokemons from the pokeapi
@@ -30,6 +33,30 @@ export class LoadedPokemonService {
       }
     });
     this.loadPokemonCards();
+  }
+
+  async loadGenerations() {
+    let url = `https://pokeapi.co/api/v2/generation/`;
+    let response = await fetch(url);
+    let generations = await response.json();
+    generations.results.forEach((generation:any) => {
+      this.generations.push(generation.name);
+    });
+  }
+
+  async loadGenPokemon(gen : number) {
+    this.search = true;
+    let url = `https://pokeapi.co/api/v2/generation/${gen}/`;
+    let response = await fetch(url);
+    let generation = await response.json();
+    generation.pokemon_species.forEach(element => {
+      element.url = element.url.split("/")[6];      
+    });
+    generation.pokemon_species.sort((a,b) => a.url - b.url)
+    this.pokemonSearchList = generation.pokemon_species.map((pokemon:any) => {
+      return pokemon.name;
+    });
+    
   }
 
   /**
@@ -65,4 +92,5 @@ export class LoadedPokemonService {
     if (!word) return word;
     return word[0].toUpperCase() + word.substr(1).toLowerCase();
   }
+
 }
