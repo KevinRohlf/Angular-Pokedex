@@ -19,9 +19,9 @@
             <div id="generalBtn" (click)="general = true" class="nav-btn" [ngClass]="general ? '' : 'inactive-btn'">
                 General                   
             </div>
-            <div id="notGeneralBtn" (click)="general = false" class="nav-btn" [ngClass]="general ? 'inactive-btn' : ''">
+            <!-- <div id="notGeneralBtn" (click)="general = false" class="nav-btn" [ngClass]="general ? 'inactive-btn' : ''">
                 Types                   
-            </div>
+            </div> -->
         </div>
         <div id="general">
             <div class="general-stats">
@@ -45,7 +45,14 @@
             <div class="d-flex justify-content-center stats-title">
                 Species specific strengths
             </div>
-            <div id="statsImport">
+            <div *ngIf="pokemon" id="statsImport">
+                <div *ngFor="let stat of pokemon.stats; let i = index" class="d-flex stats justify-content-center">
+                    <div class="d-flex stats justify-content-center">
+                        <span>{{ pokemonService.titleCaseWord(stat.name) }}</span>
+                        <ngb-progressbar class="mb-3 steel" type="success" [value]="progessbarWidth(stat.value)" style="width: 100%;">{{stat.value}}</ngb-progressbar>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>

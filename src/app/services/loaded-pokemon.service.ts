@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { url } from 'inspector';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoadedPokemonService {
   pokemonList = [];
   pokemonFullList = [];
   pokemonSearchList = [];
-  offset:number = 0;
-  limit:number = 30;
-  loading:boolean = false;
-  openOverlay:boolean = false;
-  search:boolean = false;
-  generations = []
+  offset: number = 0;
+  limit: number = 30;
+  loading: boolean = false;
+  openOverlay: boolean = false;
+  search: boolean = false;
+  generations = [];
+  loadedGen: number = 0;
 
   constructor() {
     this.loadPokemonsInList();
@@ -27,7 +27,7 @@ export class LoadedPokemonService {
     let url = `https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`;
     let response = await fetch(url);
     let list = await response.json();
-    list.results.forEach((pokemon:any) => {
+    list.results.forEach((pokemon: any) => {
       if (!this.pokemonFullList.includes(pokemon.name)) {
         this.pokemonFullList.push(pokemon.name);
       }
@@ -39,24 +39,33 @@ export class LoadedPokemonService {
     let url = `https://pokeapi.co/api/v2/generation/`;
     let response = await fetch(url);
     let generations = await response.json();
-    generations.results.forEach((generation:any) => {
+    generations.results.forEach((generation: any) => {
       this.generations.push(generation.name);
     });
   }
 
-  async loadGenPokemon(gen : number) {
+  async loadGenPokemon(gen: number) {
     this.search = true;
-    let url = `https://pokeapi.co/api/v2/generation/${gen}/`;
-    let response = await fetch(url);
-    let generation = await response.json();
-    generation.pokemon_species.forEach(element => {
-      element.url = element.url.split("/")[6];      
-    });
-    generation.pokemon_species.sort((a,b) => a.url - b.url)
-    this.pokemonSearchList = generation.pokemon_species.map((pokemon:any) => {
-      return pokemon.name;
-    });
-    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (gen == 0) {
+      this.pokemonSearchList = [];
+      this.search = false;
+      this.loadedGen = 0;
+    } else {
+      let url = `https://pokeapi.co/api/v2/generation/${gen}/`;
+      let response = await fetch(url);
+      let generation = await response.json();
+      generation.pokemon_species.forEach((element) => {
+        element.url = element.url.split('/')[6];
+      });
+      generation.pokemon_species.sort((a, b) => a.url - b.url);
+      this.pokemonSearchList = generation.pokemon_species.map(
+        (pokemon: any) => {
+          return pokemon.name;
+        }
+      );
+      this.loadedGen = gen;
+    }
   }
 
   /**
@@ -75,14 +84,13 @@ export class LoadedPokemonService {
     this.loading = false;
   }
 
-
   /**
    * Load a pokemon from the pokeapi
-   * @param name  The name of the pokemon  
+   * @param name  The name of the pokemon
    * @returns   The pokemon object
    */
-  async loadPokemon(name:string) {
-    let url = `https://pokeapi.co/api/v2/pokemon/${name}` 
+  async loadPokemon(name: string) {
+    let url = `https://pokeapi.co/api/v2/pokemon/${name}`;
     let response = await fetch(url);
     let pokemon = await response.json();
     return pokemon;
@@ -92,5 +100,4 @@ export class LoadedPokemonService {
     if (!word) return word;
     return word[0].toUpperCase() + word.substr(1).toLowerCase();
   }
-
 }

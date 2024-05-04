@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" [ngStyle]="{ 'filter': loadedPokemon.openOverlay ? 'blur(5px)' : 'none' }">
   <header>
     <app-header></app-header>
   </header>

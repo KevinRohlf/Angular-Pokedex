@@ -2,6 +2,10 @@
 .d-flex {
     display: flex;
 }
+
+.great-first-letter {
+    text-transform: capitalize;
+}
 .justify-content-center {
     justify-content: center;
 }
@@ -17,7 +21,7 @@
 body {
     margin: 0;
     font-family: 'Open Sans';
-    background-color: rgb(19, 18, 18);
+    background-color: rgb(0, 0, 0);
 }
 
 .fire {
@@ -172,3 +176,5 @@ body {
     position: absolute;
     filter: drop-shadow(10px -5px 4px #0000008c);
 }
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

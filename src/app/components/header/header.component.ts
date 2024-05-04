@@ -24,17 +24,4 @@ export class HeaderComponent {
         });
     }
   }
-
-  loadGen(start: number, end: number) {
-    this.pokemonService.search = true;
-    this.pokemonService.pokemonSearchList = this.pokemonService.pokemonFullList.filter((pokemon) => {
-      return this.pokemonService.pokemonFullList.indexOf(pokemon) < end && this.pokemonService.pokemonFullList.indexOf(pokemon) >= start;
-    });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (start === 0 && end === 0) {
-      console.log('start and end are 0');
-      this.pokemonService.search = false;
-      this.pokemonService.pokemonSearchList = [];
-    }
-  }
 }

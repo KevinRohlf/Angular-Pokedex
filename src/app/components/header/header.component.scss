@@ -3,7 +3,7 @@
   align-items: center;
   width: clamp(300px, 80%, 1600px);
   border-radius: 50px;
-  overflow: hidden;
+  position: relative;  
   background-color: #2c2c2c;
   color: white;
   height: 100px;
@@ -14,24 +14,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    grid-column: 2/4;
+    grid-column: 2/3;
+  }
+
+  @media (max-width: 500px){
+   width: 100%; 
   }
 }
 
 h1{
   grid-column: 1;
   margin-left: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .ball {
-  grid-column: 4;
-  position: relative;
+  border-radius: 50px;
+  height: 100px;
+  width: 300px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: 1;
+
   svg {
     height: 250px;
     transform: rotate(40deg);
     position: absolute;
     right: - 60px;
-    top: -80px;
+    top: -70px;
 
     path {
       fill: #00000021;
@@ -57,7 +70,9 @@ header {
 
 input {
   border: none;
-  width: clap(100px, 50%, 400px);
+  // min-width: 160px;
+  width: clamp(160px, 50%, 250px);
+  // max-width: 300px;
   padding: 10px 20px;
   border-radius: 20px;
   background-color: #ffff;
@@ -66,6 +81,17 @@ input {
 
 .head-content {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 25%);
+  grid-template-columns: repeat(25%);
   width: 100%;
+  
+}
+
+.right-corner {
+  height: 100px;
+  display: flex;
+  grid-column: 4;
+  position: relative;
+}
+.menu-btn {
+  z-index: 2;
 }

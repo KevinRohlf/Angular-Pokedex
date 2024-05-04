@@ -6,10 +6,11 @@ export class Pokemon {
     height:any
     weight:any
     abilities = []
+    stats = []
 
     constructor(obj?:any) {
         this.name = obj.name ? obj.name : "Unbekannt";
-        this.img = obj['sprites']['other']['official-artwork']['front_default'] ? obj['sprites']['other']['official-artwork']['front_default'] : "";
+        this.img = obj['sprites']['other']['official-artwork']['front_default'] ? obj['sprites']['other']['official-artwork']['front_default'] : "/assets/img/loading.svg";
         this.dexNumber = obj.id ? obj.id : 0;
         obj.types.forEach((pokemon: any) => {
             this.types.push(pokemon.type.name);
@@ -19,6 +20,9 @@ export class Pokemon {
         });
         this.height = this.convertHAndW(obj.height);
         this.weight = this.convertHAndW(obj.weight);
+        obj.stats.forEach((stat: any) => {
+            this.stats.push({name: stat.stat.name, value: stat.base_stat});
+        });
     }
 
     /**

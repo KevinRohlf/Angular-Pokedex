@@ -180,7 +180,7 @@
     }
 
     span {
-        width: 125px;
+        width: 130px;
         font-size: 14px;
         display: flex;
         justify-content: flex-end;
@@ -255,7 +255,10 @@
 }
 
 #statsImport {
-    padding: 0px 40px 10px 0px;
+    // padding: 0px 40px 10px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .opacity-05 {
@@ -316,7 +319,7 @@
         }
 
         span {
-            width: 125px;
+            width: 130px;
             font-size: 14px;
             display: flex;
             justify-content: flex-end;

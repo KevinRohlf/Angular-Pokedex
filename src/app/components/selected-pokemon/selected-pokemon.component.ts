@@ -2,10 +2,11 @@ import { Component, Input, OnInit, HostListener } from '@angular/core';
 import { Pokemon } from '../../../models/pokemon.class';
 import { LoadedPokemonService } from '../../services/loaded-pokemon.service';
 
+
 @Component({
   selector: 'app-selected-pokemon',
   templateUrl: './selected-pokemon.component.html',
-  styleUrl: './selected-pokemon.component.scss'
+  styleUrl: './selected-pokemon.component.scss',
 })
 export class SelectedPokemonComponent implements OnInit{
   @Input() selectedPokemon:any;
@@ -34,6 +35,10 @@ export class SelectedPokemonComponent implements OnInit{
     lastOrNext === "last" ? this.pokemonIndex-- : this.pokemonIndex++;
     this.pokemonService.search ? this.selectedPokemon = this.pokemonService.pokemonSearchList[this.pokemonIndex] : this.selectedPokemon = this.pokemonService.pokemonFullList[this.pokemonIndex];
     this.pokemon = new Pokemon(await this.pokemonService.loadPokemon(this.selectedPokemon));
+  }
+
+  progessbarWidth(stat: number) {
+    return stat / 255 * 100;
   }
 
   @HostListener('document:keydown', ['$event'])
