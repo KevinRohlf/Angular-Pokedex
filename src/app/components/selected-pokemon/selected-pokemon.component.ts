@@ -37,10 +37,19 @@ export class SelectedPokemonComponent implements OnInit{
     this.pokemon = new Pokemon(await this.pokemonService.loadPokemon(this.selectedPokemon));
   }
 
+  /**
+   * Get the width of the progressbar
+   * @param stat The stat to get the progressbar width for
+   * @returns The width of the progressbar
+   */
   progessbarWidth(stat: number) {
     return stat / 255 * 100;
   }
 
+  /**
+   * Load the previous or next pokemon when the left or right arrow key is pressed
+   * @param event The keydown event
+   */
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) { 
     if (event.keyCode === 37 && this.pokemonIndex !== 0) {

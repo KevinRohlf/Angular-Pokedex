@@ -18,7 +18,10 @@ export class AppComponent implements AfterViewInit {
 
 
 
-
+  /**
+   * Select a pokemon
+   * @param index The index of the pokemon to select
+   */
   selectPokemon(index) {
     this.selectedPokemon = index;
   }

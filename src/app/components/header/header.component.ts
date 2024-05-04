@@ -11,6 +11,10 @@ export class HeaderComponent {
 
   constructor(public pokemonService: LoadedPokemonService) {}
 
+  /**
+   * Search for a pokemon
+   * @param event The keyup event
+   */
   search(event: any) {
     if (this.inputField === '') {
       this.pokemonService.search = false;

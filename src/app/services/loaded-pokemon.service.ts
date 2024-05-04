@@ -35,6 +35,9 @@ export class LoadedPokemonService {
     this.loadPokemonCards();
   }
 
+  /**
+   * Load the generations from the pokeapi
+   */
   async loadGenerations() {
     let url = `https://pokeapi.co/api/v2/generation/`;
     let response = await fetch(url);
@@ -44,6 +47,10 @@ export class LoadedPokemonService {
     });
   }
 
+  /**
+   * Load the pokemon from a specific generation
+   * @param gen The generation number
+   */
   async loadGenPokemon(gen: number) {
     this.search = true;
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -95,7 +102,12 @@ export class LoadedPokemonService {
     let pokemon = await response.json();
     return pokemon;
   }
-
+  
+  /**
+   * Capitalize the first letter of a word
+   * @param word The word to capitalize
+   * @returns The capitalized word
+   */
   titleCaseWord(word: string) {
     if (!word) return word;
     return word[0].toUpperCase() + word.substr(1).toLowerCase();
