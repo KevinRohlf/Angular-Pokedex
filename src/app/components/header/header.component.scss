@@ -3,30 +3,39 @@
   align-items: center;
   width: clamp(300px, 80%, 1600px);
   border-radius: 50px;
-  position: relative;  
+  position: relative;
   background-color: #2c2c2c;
   color: white;
   height: 100px;
   box-shadow: inset 0px 0px 8px 1px rgba(0, 0, 0, 0.35);
 
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 2;
+  }
   .input {
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    grid-column: 2/3;
+    
+    z-index: 2;
+    position: relative;
   }
 
-  @media (max-width: 500px){
-   width: 100%; 
+  @media (max-width: 500px) {
+    width: 100%;
   }
 }
 
-h1{
-  grid-column: 1;
-  margin-left: 50px;
+h1 {
   display: flex;
   align-items: center;
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--bs-primary);
 }
 
 .ball {
@@ -43,7 +52,7 @@ h1{
     height: 250px;
     transform: rotate(40deg);
     position: absolute;
-    right: - 60px;
+    right: -60px;
     top: -70px;
 
     path {
@@ -80,18 +89,44 @@ input {
 }
 
 .head-content {
-  display: grid;
-  grid-template-columns: repeat(25%);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
   width: 100%;
-  
 }
 
 .right-corner {
   height: 100px;
   display: flex;
-  grid-column: 4;
   position: relative;
 }
 .menu-btn {
   z-index: 2;
+}
+
+.mobile-search-btn {
+  height: 38px;
+  width: 50px;
+
+  fill: var(--bs-btn-color);
+
+  &:hover {
+    fill: var(--bs-btn-hover-color);
+  }
+}
+
+.mobile-searchbar {
+  position: absolute;
+  bottom: -55px;
+  box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, 0.25);
+}
+
+.searchbar {
+  background-color: #2c2c2c;
+  border: 1px solid var(--bs-primary);
+  color: var(--bs-primary);
+  &::placeholder {
+    color: var(--bs-primary);
+  }
 }

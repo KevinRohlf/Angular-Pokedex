@@ -8,6 +8,7 @@ import { LoadedPokemonService } from '../../services/loaded-pokemon.service';
 })
 export class HeaderComponent {
   inputField: string;
+  openSearch = false;
 
   constructor(public pokemonService: LoadedPokemonService) {}
 
@@ -27,5 +28,21 @@ export class HeaderComponent {
           return pokemon.includes(this.inputField.toLowerCase());
         });
     }
+  }
+
+  isOpenSearchbar() {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth >= 600) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
+  }
+
+  openSearchbar() {
+    this.openSearch = !this.openSearch;
+    console.log(this.openSearch);
   }
 }
