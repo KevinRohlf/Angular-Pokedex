@@ -1,3 +1,4 @@
+
 .content {
   display: flex;
   align-items: center;
@@ -9,18 +10,13 @@
   height: 100px;
   box-shadow: inset 0px 0px 8px 1px rgba(0, 0, 0, 0.35);
 
-  a {
-    text-decoration: none;
-    cursor: pointer;
-    z-index: 2;
-  }
   .input {
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+
     z-index: 2;
     position: relative;
   }
@@ -35,7 +31,9 @@ h1 {
   align-items: center;
   color: transparent;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: var(--bs-primary);
+  -webkit-text-stroke-color: var(--primary);
+  cursor: pointer;
+  z-index: 2;
 }
 
 .ball {
@@ -109,10 +107,10 @@ input {
   height: 38px;
   width: 50px;
 
-  fill: var(--bs-btn-color);
+  fill: var(--primary);
 
   &:hover {
-    fill: var(--bs-btn-hover-color);
+    fill: var(--hover-primary);
   }
 }
 
@@ -124,9 +122,19 @@ input {
 
 .searchbar {
   background-color: #2c2c2c;
-  border: 1px solid var(--bs-primary);
-  color: var(--bs-primary);
+  border: 1px solid var(--primary);
+  color: var(--primary);
   &::placeholder {
-    color: var(--bs-primary);
+    color: var(--primary);
+  }
+}
+
+.btn {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+
+  &:hover {
+    background-color: var(--primary);
+    color: var(--hover-primary);
   }
 }

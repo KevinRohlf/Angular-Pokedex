@@ -1,9 +1,10 @@
 <header>
   <div class="content">
     <div class="head-content">
-      <a href="/"><h1>Pokedex</h1></a>
+      <h1 (click)="reload()">Pokedex</h1>
       <div class="input">
         <button
+          aria-label="search Button"
           class="btn-outline-primary btn mobile-search-btn"
           *ngIf="!isOpenSearchbar()"
           (click)="openSearchbar()"

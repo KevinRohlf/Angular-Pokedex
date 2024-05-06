@@ -45,4 +45,8 @@ export class HeaderComponent {
     this.openSearch = !this.openSearch;
     console.log(this.openSearch);
   }
+
+  reload() {
+    window.location.reload();
+  }
 }
